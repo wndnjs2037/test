@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.codepresso.team2app.repository.PostRepository">
+    <insert id="save">
+        insert into post(content, author)
+        values (#{post.content}, #{post.author});
+    </insert>
+
+    <insert id="savePost">
+        insert into post(content, author)
+        values (#{post.content}, #{post.author});
+    </insert>
+
+    <select id="findAllPost" resultType="com.codepresso.team2app.vo.Post">
+        SELECT * FROM POST;
+    </select>
+
+    <update id="updateLike"> <!-- like를 세기 위함 -->
+        update post set count_liked = #{post.count_liked} + 1
+        where id = #{post.id}; <!-- # -> 입력받는 값, 안붙이면 쿼리문의 데이터 -->
+    </update>
+
+</mapper>
